@@ -13,11 +13,14 @@
     {% endfor %}
 {% endblock %}
             <div id="welcome">
-                <h1>Книжный каталог</h1>
+                <h1>Редактирование автора</h1>
             </div>
 
+
+{{ form_start(form) }}
+{{ form_widget(form) }}
+{{ form_end(form) }}
 
         </div>
     </div>
 {% endblock %}
-
