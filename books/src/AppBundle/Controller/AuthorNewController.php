@@ -14,6 +14,9 @@ class AuthorNewController extends Controller
 {
 	/**
     * @Route("/authornew", name="authornew")
+	* Контроллер добавления автора
+    * Из особенностей только провеерка на уникальность
+	* В базе храним полное ФИО, за вывод ФИО в формате "Фаммлия + инициалы" отвечаает геттер в модели author  
     */
     public function newAction(Request $request)
     {
@@ -37,6 +40,8 @@ class AuthorNewController extends Controller
 			$em = $this->get('doctrine')->getManager();
 	        $em->persist($auth);
 	        $em->flush();
+			$this->addFlash('notice','Автор добавлен');
+			return $this->redirect('/');
 			
 		 }
     }
