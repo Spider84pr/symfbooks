@@ -15,8 +15,59 @@
             <div id="welcome">
                 <h1>Книжный каталог</h1>
             </div>
-
-
+			<table>
+				<tbody>
+					<tr>
+						<th>Название</th>
+						<th>Авторы</th>
+						<th>ISBN</th>
+						<th>Кол-во страаниц</th>
+						<th>Год выпуска</th>
+						<th>Обложка</th>
+						<th></th>
+						<th></th>
+						
+					</tr>
+					{% for key, item in book %}
+					<tr>
+						<td>{{ item.name }}</td>
+						<td>
+						{% for key1, item1 in item.auth %}
+						{{ item1 }}	
+						 {% if not loop.last %}
+  						<br/> 
+  						 {% endif %}
+						{% endfor %}
+						</td>
+						<td>{{ item.isbn }}</td>
+						<td>{{ item.pages }}</td>
+						<td>{{ item.year }}</td>
+						<td><img src="/books/web/{{ item.pic }}"/></td>
+						<td><a href="/bookedit/{{ item.id }}">Редактировать</a></td>
+						<td><a href="/bookdelete/{{ item.id }}">Удалить</a></td>
+					</tr>
+					 {% endfor %}
+				</tbody>
+			</table>
+			<a href="/booknew">Добавить книгу</a>
+			<h2>Список авторов</h2>
+			<table>
+				<tbody>
+					<tr>
+						<th>Фио</th>
+						<th></th>
+						<th></th>
+					</tr>
+					{% for key, item in auth %}
+					<tr>
+						<td>{{ item.name }}</td>
+						<td><a href="/authoredit/{{ item.id }}">Редактировать</a></td>
+						<td><a href="/authordelete/{{ item.id }}">Удалить</a></td>
+					</tr>
+					 {% endfor %}
+				</tbody>
+			</table>
+			<a href="/authornew">Добавить автора</a>
         </div>
     </div>
 {% endblock %}
