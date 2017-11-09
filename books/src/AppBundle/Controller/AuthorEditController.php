@@ -37,6 +37,8 @@ class AuthorEditController extends Controller
 			$em = $this->get('doctrine')->getManager();
 	        $em->persist($curauth);
 	        $em->flush();
+			$this->addFlash('notice','Автор отредактирован');
+			return $this->redirect('/');
 			
 		 }
     }
