@@ -60,6 +60,14 @@ class Author
      */
     public function getName()
     {
-        return $this->name;
+    	$s='';
+    	$nm=explode(' ', $this->name);
+        $s=$nm[0];
+        if (isset($nm[1])) $s.=' '.mb_substr($nm[1],0,1,'UTF-8').'. ';
+		if (isset($nm[2])) $s.=mb_substr($nm[2],0,1,'UTF-8').'.';
+		
+        
+        return $s;
     }
 }
+
