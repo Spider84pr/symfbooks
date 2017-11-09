@@ -4,14 +4,15 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Product
  *
- * @ORM\Table(name="product")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\ProductRepository")
+ * @ORM\Table(name="book")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\BookRepository")
  */
-class Product
+class Book
 {
     /**
      * @var int
@@ -43,6 +44,12 @@ class Product
      * @ORM\Column(name="pages", type="bigint")
      */
     private $pages;
+   /**
+     * @var int
+     *
+     * @ORM\Column(name="year", type="bigint")
+     */
+    private $year;
 
     /**
      * @var string
@@ -55,7 +62,24 @@ class Product
 	{
 	    $this->author = new ArrayCollection();
 	}
+   /**
+     * @ORM\Column(type="string")
+     *
+     * @Assert\File(mimeTypes={ "image/jpeg" })
+     */
+    private $pic;
 
+    public function getPic()
+    {
+        return $this->pic;
+    }
+
+    public function setPic($pic)
+    {
+        $this->pic = $pic;
+
+        return $this;
+    }
     /**
      * Get id
      *
@@ -100,6 +124,19 @@ class Product
         return $this->author;
     }
 
+    /**
+     * Set author
+     *
+     * @param string $author
+     *
+     * @return Book
+     */
+    public function setAuthor($author)
+    {
+        $this->author = $author;
+
+        return $this;
+    }
 
 
 
@@ -126,6 +163,32 @@ class Product
     {
         return $this->pages; 
     }
+
+    /**
+     * Set year
+     *
+     * @param string $year
+     *
+     * @return Book
+     */
+    public function setYear($year)
+    {
+        $this->year = $year;
+
+        return $this;
+    }
+
+    /**
+     * Get year
+     *
+     * @return bigint
+     */
+    public function getYear()
+    {
+        return $this->year; 
+    }
+
+
 
     /**
      * Set isbn  
